@@ -1,3 +1,12 @@
+import logging
+
+
+class NewFunctionFilter(logging.Filter):
+    def filter(self, record: logging.LogRecord) -> int:
+        print(dir(record ))
+        return hasattr(record, "mike_name")
+
+
 logger_config = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -12,6 +21,7 @@ logger_config = {
             "class": "logging.StreamHandler",
             "level": "DEBUG",
             "formatter": "std_format",
+            "filters": ["new_filter"],
         }
     },
     "loggers": {
@@ -21,8 +31,11 @@ logger_config = {
             # "propagate": False
         }
     },
-
-    # "filters": {},
+    "filters": {
+        "new_filter": {
+            "()": NewFunctionFilter,
+        }
+    },
     # "": {}
     # "incremental": True
 }
