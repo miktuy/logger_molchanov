@@ -3,7 +3,7 @@ logger_config = {
     "disable_existing_loggers": False,
     "formatters": {
         "std_format": {
-            "format": "{asctime} - {levelname} - {name} - {message}",
+            "format": "{asctime} - {levelname} - {name} - {module}:{funcName}:{lineno}- {message}",
             "style": "{",
         }
     },
